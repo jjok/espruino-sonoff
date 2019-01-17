@@ -76,7 +76,10 @@ function onInit() {
 
 function connectToWifi() {
     console.log("WiFi: Connecting...");
-    wifi.connect(wifi_config.name, wifi_config.options, function(ap) {
-        console.log("Successful connect.", ap);
+    wifi.connect(wifi_config.name, wifi_config.options, function(err) {
+        if(err) {
+            console.log("Wifi: Connection error - ", err);
+            wifi.disconnect();
+        }
     });
 }
