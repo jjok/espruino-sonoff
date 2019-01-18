@@ -48,11 +48,10 @@ function setState(state) {
 
 function onInit() {
     setInterval(function() {
-        if (!mqtt) return;
         if(!wifiIsConnected) {
             connectToWifi();
         }
-        else if (!mqtt.connected) {
+        else if (mqtt && !mqtt.connected) {
             console.log("MQTT: Disconnected");
             mqtt.connect();
         }
